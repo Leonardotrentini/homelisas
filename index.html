@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="description" content="Atacado de roupas masculinas — compre direto da fábrica com margem na revenda.">
+    <title>Home Lisas — Atacado</title>
+    <link rel="preload" href="logo.jpg" as="image" type="image/jpeg" fetchpriority="high">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{-webkit-text-size-adjust:100%}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+            background-color:#1a1a1a;color:#fff;
+            min-height:100vh;min-height:100dvh;
+            display:flex;flex-direction:column;align-items:center;justify-content:center;
+            padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+        }
+        .container{max-width:800px;width:100%;text-align:center}
+        .logo{
+            width:clamp(88px,22vw,120px);height:clamp(88px,22vw,120px);
+            margin:0 auto clamp(20px,5vw,32px);
+        }
+        .logo img{width:100%;height:100%;object-fit:contain;display:block}
+        .badge{
+            background-color:rgba(255,255,255,.1);
+            display:inline-block;padding:8px 16px;border-radius:999px;
+            font-size:clamp(12px,3.5vw,14px);margin-bottom:clamp(18px,4vw,28px);
+        }
+        h1{
+            font-size:clamp(1.35rem,6.5vw,4rem);font-weight:900;line-height:1.15;margin-bottom:clamp(14px,3vw,20px);
+            text-transform:uppercase;letter-spacing:-.02em;
+        }
+        h1 .highlight{color:#D4AF37;display:block;margin-top:.15em}
+        .subtitle{
+            font-size:clamp(.95rem,3.8vw,1.25rem);color:#ccc;margin-bottom:clamp(24px,5vw,36px);
+            line-height:1.55;max-width:36ch;margin-left:auto;margin-right:auto;
+        }
+        .subtitle strong{color:#fff;font-weight:600}
+        .cta-button{
+            display:inline-flex;align-items:center;justify-content:center;
+            width:100%;max-width:min(100%,360px);
+            min-height:48px;
+            background-color:#D4AF37;color:#1a1a1a;
+            padding:14px 24px;font-size:clamp(1rem,3.8vw,1.125rem);font-weight:700;
+            text-decoration:none;border-radius:10px;margin:0 auto clamp(36px,7vw,48px);
+            cursor:pointer;border:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+            transition:background-color .2s ease,transform .2s ease;
+        }
+        .cta-button:active{transform:scale(.98)}
+        @media (hover:hover){
+            .cta-button:hover{background-color:#f0c852;transform:translateY(-1px);box-shadow:0 8px 20px rgba(212,175,55,.28)}
+        }
+        .features{
+            display:flex;justify-content:center;gap:clamp(20px,6vw,40px);flex-wrap:wrap;
+        }
+        .feature{text-align:center;min-width:min(100%,100px)}
+        .feature-number{font-size:clamp(1.75rem,6vw,2.25rem);font-weight:900;color:#D4AF37;margin-bottom:4px;line-height:1}
+        .feature-text{font-size:clamp(12px,3.2vw,14px);color:#ccc;line-height:1.35}
+        @media (max-width:380px){
+            .features{flex-direction:column;gap:20px}
+        }
+        @media (prefers-reduced-motion:reduce){
+            .logo,.badge,h1,.subtitle,.cta-button,.features{animation:none!important}
+        }
+    </style>
+    <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=820651490741491&amp;ev=PageView&amp;noscript=1"></noscript>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="logo.jpg" alt="Home Lisas" width="120" height="120" fetchpriority="high" decoding="async">
+        </div>
+        <div class="badge">🇧🇷 Atacado para todo o Brasil</div>
+        <h1>
+            Compre já direto
+            <span class="highlight">da fábrica, alta margem de lucro na revenda!</span>
+        </h1>
+        <p class="subtitle">
+            Aqui você encontra as melhores peças do mercado, com
+            <strong>alta qualidade e preço justo</strong>, garantindo sucesso na revenda.
+        </p>
+        <button type="button" class="cta-button" id="ctaButton">Falar com CONSULTOR!</button>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-number">10</div>
+                <div class="feature-text">Peças mínimo de início</div>
+            </div>
+            <div class="feature">
+                <div class="feature-number">100%</div>
+                <div class="feature-text">Atacado para lojistas</div>
+            </div>
+            <div class="feature">
+                <div class="feature-number">🇧🇷</div>
+                <div class="feature-text">Entrega para todo Brasil</div>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function(){
+        function injectPixel(){
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            if(typeof fbq==='function'){fbq('init','820651490741491');fbq('track','PageView');}
+        }
+        if('requestIdleCallback'in window){requestIdleCallback(function(){injectPixel()},{timeout:4000});}
+        else{window.addEventListener('load',function(){setTimeout(injectPixel,1500);});}
+    })();
+    </script>
+    <script>
+        const whatsappLinks=[
+            'https://api.whatsapp.com/send/?phone=5547991158287&text=Ol%C3%A1%2C+vim+do+site%21+E+quero+comprar+no+atacado%21&type=phone_number&app_absent=0',
+            'https://api.whatsapp.com/send/?phone=5547992498733&text=Ol%C3%A1%2C+vim+do+site%21+E+quero+comprar+no+atacado%21&type=phone_number&app_absent=0',
+            'https://api.whatsapp.com/send/?phone=5547992562582&text=Ol%C3%A1%2C+vim+do+site%21+E+quero+comprar+no+atacado%21&type=phone_number&app_absent=0'
+        ];
+        function getLeadCounter(){const c=localStorage.getItem('leadCounter');return c?parseInt(c,10):0;}
+        function setLeadCounter(v){localStorage.setItem('leadCounter',String(v));}
+        document.getElementById('ctaButton').addEventListener('click',function(){
+            const n=getLeadCounter();
+            setLeadCounter(n+1);
+            window.open(whatsappLinks[n%3],'_blank','noopener,noreferrer');
+        });
+    </script>
+</body>
+</html>
