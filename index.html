@@ -114,19 +114,28 @@
             'https://wa.me/5547992562582?text='+WHATSAPP_MSG
         ];
         const LEAD_KEY='leadCounter';
-        function getLeadCounter(){
+        let leadCounter=0;
+        function readStoredCounter(store){
             try{
-                const n=parseInt(localStorage.getItem(LEAD_KEY),10);
-                return Number.isFinite(n)&&n>=0?n:0;
-            }catch(e){return 0;}
+                const n=parseInt(store.getItem(LEAD_KEY),10);
+                return Number.isFinite(n)&&n>=0?n:null;
+            }catch(e){return null;}
         }
-        function setLeadCounter(v){
-            try{localStorage.setItem(LEAD_KEY,String(v));}catch(e){}
+        function loadLeadCounter(){
+            const fromLocal=readStoredCounter(localStorage);
+            const fromSession=readStoredCounter(sessionStorage);
+            leadCounter=Math.max(fromLocal??0,fromSession??0,leadCounter);
         }
+        function saveLeadCounter(v){
+            leadCounter=v;
+            const s=String(v);
+            try{localStorage.setItem(LEAD_KEY,s);}catch(e){}
+            try{sessionStorage.setItem(LEAD_KEY,s);}catch(e){}
+        }
+        loadLeadCounter();
         document.getElementById('ctaButton').addEventListener('click',function(){
-            const n=getLeadCounter();
-            const index=n%whatsappLinks.length;
-            setLeadCounter(n+1);
+            const index=leadCounter%whatsappLinks.length;
+            saveLeadCounter(leadCounter+1);
             const url=whatsappLinks[index];
             const win=window.open(url,'_blank','noopener,noreferrer');
             if(!win)window.location.href=url;
