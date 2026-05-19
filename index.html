@@ -113,32 +113,39 @@
             'https://wa.me/5547992020510?text='+WHATSAPP_MSG,
             'https://wa.me/5547992562582?text='+WHATSAPP_MSG
         ];
-        const LEAD_KEY='leadCounter';
-        let leadCounter=0;
-        function readStoredCounter(store){
+        let localFallback=0;
+        function openWhatsApp(url){
+            const a=document.createElement('a');
+            a.href=url;
+            a.target='_blank';
+            a.rel='noopener noreferrer';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        }
+        function fallbackUrl(){
+            const index=localFallback%whatsappLinks.length;
+            localFallback+=1;
+            return whatsappLinks[index];
+        }
+        document.getElementById('ctaButton').addEventListener('click',async function(){
+            const btn=this;
+            if(btn.disabled)return;
+            btn.disabled=true;
+            const label=btn.textContent;
+            btn.textContent='Abrindo...';
+            let url=null;
             try{
-                const n=parseInt(store.getItem(LEAD_KEY),10);
-                return Number.isFinite(n)&&n>=0?n:null;
-            }catch(e){return null;}
-        }
-        function loadLeadCounter(){
-            const fromLocal=readStoredCounter(localStorage);
-            const fromSession=readStoredCounter(sessionStorage);
-            leadCounter=Math.max(fromLocal??0,fromSession??0,leadCounter);
-        }
-        function saveLeadCounter(v){
-            leadCounter=v;
-            const s=String(v);
-            try{localStorage.setItem(LEAD_KEY,s);}catch(e){}
-            try{sessionStorage.setItem(LEAD_KEY,s);}catch(e){}
-        }
-        loadLeadCounter();
-        document.getElementById('ctaButton').addEventListener('click',function(){
-            const index=leadCounter%whatsappLinks.length;
-            saveLeadCounter(leadCounter+1);
-            const url=whatsappLinks[index];
-            const win=window.open(url,'_blank','noopener,noreferrer');
-            if(!win)window.location.href=url;
+                const res=await fetch('/api/next',{cache:'no-store'});
+                if(res.ok){
+                    const data=await res.json();
+                    if(data&&data.url)url=data.url;
+                }
+            }catch(e){}
+            if(!url)url=fallbackUrl();
+            openWhatsApp(url);
+            btn.textContent=label;
+            btn.disabled=false;
         });
     </script>
 </body>
