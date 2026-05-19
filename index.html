@@ -108,16 +108,28 @@
     })();
     </script>
     <script>
+        const WHATSAPP_MSG='Ol%C3%A1%2C%20vim%20do%20site!%20E%20quero%20comprar%20no%20atacado!';
         const whatsappLinks=[
-            'https://wa.me/5547992020510?text=Ol%C3%A1%2C%20vim%20do%20site!%20E%20quero%20comprar%20no%20atacado!',
-            'https://api.whatsapp.com/send/?phone=5547992562582&text=Ol%C3%A1%2C+vim+do+site%21+E+quero+comprar+no+atacado%21&type=phone_number&app_absent=0'
+            'https://wa.me/5547992020510?text='+WHATSAPP_MSG,
+            'https://wa.me/5547992562582?text='+WHATSAPP_MSG
         ];
-        function getLeadCounter(){const c=localStorage.getItem('leadCounter');return c?parseInt(c,10):0;}
-        function setLeadCounter(v){localStorage.setItem('leadCounter',String(v));}
+        const LEAD_KEY='leadCounter';
+        function getLeadCounter(){
+            try{
+                const n=parseInt(localStorage.getItem(LEAD_KEY),10);
+                return Number.isFinite(n)&&n>=0?n:0;
+            }catch(e){return 0;}
+        }
+        function setLeadCounter(v){
+            try{localStorage.setItem(LEAD_KEY,String(v));}catch(e){}
+        }
         document.getElementById('ctaButton').addEventListener('click',function(){
             const n=getLeadCounter();
+            const index=n%whatsappLinks.length;
             setLeadCounter(n+1);
-            window.open(whatsappLinks[n%2],'_blank','noopener,noreferrer');
+            const url=whatsappLinks[index];
+            const win=window.open(url,'_blank','noopener,noreferrer');
+            if(!win)window.location.href=url;
         });
     </script>
 </body>
