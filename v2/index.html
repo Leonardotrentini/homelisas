@@ -330,7 +330,7 @@
                 <p class="kicker">Atacado · Brasil inteiro</p>
                 <h1>Direto da fábrica.<br><em>Margem na revenda.</em></h1>
                 <p class="hero-lead">
-                    Peças masculinas com <strong>qualidade de fábrica</strong> e preço justo —
+                    Peças com <strong>qualidade de fábrica</strong> e preço justo —
                     para quem quer lucrar de verdade na revenda.
                 </p>
                 <button type="button" class="cta" data-cta>
@@ -428,9 +428,53 @@
 
     <script>
     (function(){
+        var PIXEL_ID='820651490741491';
+        function makeEventId(){
+            return 'hl_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
+        }
+        function getCookie(name){
+            try{
+                var m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)'));
+                return m?decodeURIComponent(m[1]):'';
+            }catch(e){return '';}
+        }
+        function sendCapi(eventName,eventId){
+            var payload={
+                event_name:eventName,
+                event_id:eventId,
+                event_source_url:location.href,
+                fbp:getCookie('_fbp'),
+                fbc:getCookie('_fbc')
+            };
+            try{
+                var body=JSON.stringify(payload);
+                if(navigator.sendBeacon){
+                    navigator.sendBeacon('/api/capi',new Blob([body],{type:'application/json'}));
+                }else{
+                    fetch('/api/capi',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true,cache:'no-store'}).catch(function(){});
+                }
+            }catch(e){}
+        }
+        window.__hlTrack=function(eventName){
+            var id=makeEventId();
+            try{
+                if(typeof fbq==='function'){
+                    fbq('track',eventName,{},{eventID:id});
+                }
+            }catch(e){}
+            sendCapi(eventName,id);
+            return id;
+        };
+
+        var pageViewId=makeEventId();
+        sendCapi('PageView',pageViewId);
+
         function injectPixel(){
             !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            if(typeof fbq==='function'){fbq('init','820651490741491');fbq('track','PageView');}
+            if(typeof fbq==='function'){
+                fbq('init',PIXEL_ID);
+                fbq('track','PageView',{},{eventID:pageViewId});
+            }
         }
         if('requestIdleCallback'in window){requestIdleCallback(function(){injectPixel()},{timeout:4000});}
         else{window.addEventListener('load',function(){setTimeout(injectPixel,1500);});}
@@ -477,6 +521,7 @@
 
         function onCtaClick(e){
             e.preventDefault();
+            if(typeof window.__hlTrack==='function')window.__hlTrack('Lead');
             const pick=ready||localNext();
             ready=null;
             openNow(pick.url);
