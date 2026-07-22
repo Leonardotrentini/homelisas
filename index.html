@@ -351,14 +351,18 @@
     <script>
     (function(){
         var PIXEL_ID='820651490741491';
-        function makeEventId(){
-            return 'hl_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
-        }
+        var pageViewId='hl_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
+        var pageViewCapiSent=false;
+        var leadLockUntil=0;
+
         function getCookie(name){
             try{
                 var m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)'));
                 return m?decodeURIComponent(m[1]):'';
             }catch(e){return '';}
+        }
+        function makeEventId(){
+            return 'hl_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
         }
         function sendCapi(eventName,eventId){
             var payload={
@@ -368,16 +372,36 @@
                 fbp:getCookie('_fbp'),
                 fbc:getCookie('_fbc')
             };
+            var body=JSON.stringify(payload);
+            // fetch+keepalive keeps Content-Type/json reliable (needed for event_id dedupe)
             try{
-                var body=JSON.stringify(payload);
-                if(navigator.sendBeacon){
-                    navigator.sendBeacon('/api/capi',new Blob([body],{type:'application/json'}));
-                }else{
-                    fetch('/api/capi',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true,cache:'no-store'}).catch(function(){});
-                }
+                fetch('/api/capi',{
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:body,
+                    keepalive:true,
+                    cache:'no-store'
+                }).catch(function(){
+                    try{
+                        if(navigator.sendBeacon){
+                            navigator.sendBeacon('/api/capi',new Blob([body],{type:'application/json'}));
+                        }
+                    }catch(e){}
+                });
             }catch(e){}
         }
+        function sendPageViewCapiOnce(){
+            if(pageViewCapiSent)return;
+            pageViewCapiSent=true;
+            sendCapi('PageView',pageViewId);
+        }
+        // One browser + one server event, SAME event_id → Meta dedupes to a single PageView/Lead
         window.__hlTrack=function(eventName){
+            if(eventName==='Lead'){
+                var now=Date.now();
+                if(now<leadLockUntil)return null;
+                leadLockUntil=now+2500;
+            }
             var id=makeEventId();
             try{
                 if(typeof fbq==='function'){
@@ -388,18 +412,32 @@
             return id;
         };
 
-        var pageViewId=makeEventId();
-        sendCapi('PageView',pageViewId);
-
         function injectPixel(){
-            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            if(typeof fbq==='function'){
-                fbq('init',PIXEL_ID);
-                fbq('track','PageView',{},{eventID:pageViewId});
-            }
+            if(window.__hlPixelInjected)return;
+            window.__hlPixelInjected=true;
+
+            !function(f,b,e,v,n,t,s){
+                if(f.fbq)return;
+                n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;
+                n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+            }(window,document);
+
+            fbq('init',PIXEL_ID);
+            fbq('track','PageView',{},{eventID:pageViewId});
+
+            var t=document.createElement('script');
+            t.async=true;
+            t.src='https://connect.facebook.net/en_US/fbevents.js';
+            // Send CAPI after pixel script loads so _fbp exists → better dedupe match
+            t.onload=function(){setTimeout(sendPageViewCapiOnce,50);};
+            t.onerror=function(){sendPageViewCapiOnce();};
+            document.head.appendChild(t);
+            // Adblock / stalled script: still send one server PageView (no second browser event)
+            setTimeout(sendPageViewCapiOnce,3000);
         }
         if('requestIdleCallback'in window){requestIdleCallback(function(){injectPixel()},{timeout:4000});}
-        else{window.addEventListener('load',function(){setTimeout(injectPixel,1500);});}
+        else{window.addEventListener('load',function(){setTimeout(injectPixel,1200);});}
     })();
     </script>
     <script>

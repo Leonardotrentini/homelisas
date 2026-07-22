@@ -2,6 +2,24 @@ const PIXEL_ID = process.env.META_PIXEL_ID || '820651490741491';
 const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
 const GRAPH_VERSION = 'v21.0';
 
+// Best-effort idempotency inside a warm serverless instance (prevents double POST).
+const recentEventIds = new Map();
+const DEDUPE_TTL_MS = 15 * 60 * 1000;
+
+function pruneRecent(now) {
+  for (const [id, ts] of recentEventIds) {
+    if (now - ts > DEDUPE_TTL_MS) recentEventIds.delete(id);
+  }
+}
+
+function alreadySent(eventId) {
+  const now = Date.now();
+  pruneRecent(now);
+  if (recentEventIds.has(eventId)) return true;
+  recentEventIds.set(eventId, now);
+  return false;
+}
+
 function clientIp(req) {
   const xf = req.headers['x-forwarded-for'];
   if (typeof xf === 'string' && xf.length) return xf.split(',')[0].trim();
@@ -66,9 +84,19 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid event_name' });
   }
 
-  const eventId =
-    String(body.event_id || '').trim() ||
-    `hl_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+  const eventId = String(body.event_id || '').trim();
+  if (!eventId || eventId.length > 64) {
+    // Require client event_id so browser+server can dedupe. Never invent a new one.
+    return res.status(400).json({ error: 'event_id required' });
+  }
+
+  if (alreadySent(`${eventName}:${eventId}`)) {
+    return res.status(200).json({
+      ok: true,
+      deduped: true,
+      event_id: eventId,
+    });
+  }
 
   const userData = {
     client_user_agent: req.headers['user-agent'] || undefined,
@@ -104,7 +132,6 @@ module.exports = async function handler(req, res) {
 
   const payload = {
     data: [event],
-    // Helps Meta validate payload in Events Manager test events when provided
     ...(body.test_event_code
       ? { test_event_code: String(body.test_event_code).slice(0, 32) }
       : {}),
@@ -120,6 +147,8 @@ module.exports = async function handler(req, res) {
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
+      // Allow retry on Meta failure
+      recentEventIds.delete(`${eventName}:${eventId}`);
       return res.status(502).json({
         ok: false,
         error: data.error || data,
@@ -128,11 +157,13 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       ok: true,
+      deduped: false,
       event_id: eventId,
       events_received: data.events_received,
       fbtrace_id: data.fbtrace_id,
     });
   } catch (e) {
+    recentEventIds.delete(`${eventName}:${eventId}`);
     return res.status(502).json({ ok: false, error: 'CAPI request failed' });
   }
 };
