@@ -3,100 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#141414">
     <meta name="description" content="Atacado de roupas masculinas — compre direto da fábrica com margem na revenda.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Home Lisas — Atacado de Roupas Masculinas">
+    <meta property="og:description" content="Compre já direto da fábrica, alta margem de lucro na revenda.">
+    <meta property="og:image" content="https://homelisas.vercel.app/logo.jpg">
+    <meta property="og:url" content="https://homelisas.vercel.app/">
     <title>Home Lisas — Atacado</title>
     <link rel="preload" href="logo.jpg" as="image" type="image/jpeg" fetchpriority="high">
     <style>
+        :root{
+            --bg:#141414;--bg-alt:#1a1a1a;--gold:#D4AF37;--gold-light:#f0c852;--gold-dim:#c79a2e;
+            --text:#fff;--text-dim:#b8b8b8;--text-faint:#8a8a8a;--line:rgba(255,255,255,.08);
+        }
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{-webkit-text-size-adjust:100%}
+        html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
         body{
             font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
-            background-color:#1a1a1a;color:#fff;
-            min-height:100vh;min-height:100dvh;
-            display:flex;flex-direction:column;align-items:center;justify-content:center;
-            padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+            background:var(--bg);color:var(--text);
+            padding-bottom:84px;
         }
-        .container{max-width:800px;width:100%;text-align:center}
-        .logo{
-            width:clamp(88px,22vw,120px);height:clamp(88px,22vw,120px);
-            margin:0 auto clamp(20px,5vw,32px);
+        img{max-width:100%}
+        .wrap{max-width:640px;margin:0 auto;padding:0 20px}
+
+        /* ---------- top bar ---------- */
+        .topbar{
+            position:sticky;top:0;z-index:30;
+            display:flex;align-items:center;gap:10px;
+            padding:12px 20px;background:#181818;
+            border-bottom:1px solid var(--line);
         }
-        .logo img{width:100%;height:100%;object-fit:contain;display:block}
+        .topbar img{width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0}
+        .topbar span{font-weight:800;letter-spacing:.02em;font-size:15px}
+        .topbar span em{color:var(--gold);font-style:normal}
+
+        /* ---------- hero ---------- */
+        .hero{
+            background:
+                radial-gradient(ellipse 90% 55% at 50% 0%, rgba(212,175,55,.16), transparent),
+                radial-gradient(ellipse 60% 45% at 100% 100%, rgba(212,175,55,.07), transparent);
+            padding:clamp(32px,8vw,56px) 0 clamp(40px,8vw,56px);
+            text-align:center;
+        }
+        .hero-inner{animation:rise .6s ease both}
+        .logo-wrap{position:relative;width:clamp(84px,20vw,100px);height:clamp(84px,20vw,100px);margin:0 auto clamp(16px,4vw,22px)}
+        .logo-glow{position:absolute;inset:-14px;background:radial-gradient(circle,rgba(212,175,55,.35),transparent 70%);filter:blur(6px)}
+        .logo{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;border:1px solid rgba(212,175,55,.4);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+        .logo img{width:100%;height:100%;object-fit:cover;display:block}
         .badge{
-            background-color:rgba(255,255,255,.1);
-            display:inline-block;padding:8px 16px;border-radius:999px;
-            font-size:clamp(12px,3.5vw,14px);margin-bottom:clamp(18px,4vw,28px);
+            background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.35);color:#e8cb6f;
+            display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:999px;
+            font-size:clamp(12px,3.2vw,13px);font-weight:600;letter-spacing:.02em;margin-bottom:clamp(14px,4vw,20px);
         }
+        .badge svg{width:14px;height:14px;flex-shrink:0}
         h1{
-            font-size:clamp(1.35rem,6.5vw,4rem);font-weight:900;line-height:1.15;margin-bottom:clamp(14px,3vw,20px);
-            text-transform:uppercase;letter-spacing:-.02em;
+            font-size:clamp(1.55rem,7vw,2.9rem);font-weight:800;line-height:1.18;margin-bottom:clamp(12px,3vw,18px);
+            letter-spacing:-.02em;
         }
-        h1 .highlight{color:#D4AF37;display:block;margin-top:.15em}
+        h1 .highlight{
+            background:linear-gradient(100deg,var(--gold-light),var(--gold) 55%,var(--gold-dim));
+            -webkit-background-clip:text;background-clip:text;color:transparent;
+            display:block;margin-top:.16em;
+        }
         .subtitle{
-            font-size:clamp(.95rem,3.8vw,1.25rem);color:#ccc;margin-bottom:clamp(24px,5vw,36px);
-            line-height:1.55;max-width:36ch;margin-left:auto;margin-right:auto;
+            font-size:clamp(1rem,3.6vw,1.13rem);color:var(--text-dim);margin-bottom:clamp(22px,5vw,30px);
+            line-height:1.6;max-width:38ch;margin-left:auto;margin-right:auto;
         }
         .subtitle strong{color:#fff;font-weight:600}
+
+        /* ---------- cta button (shared) ---------- */
         .cta-button{
-            display:inline-flex;align-items:center;justify-content:center;
-            width:100%;max-width:min(100%,360px);
-            min-height:48px;
-            background-color:#D4AF37;color:#1a1a1a;
-            padding:14px 24px;font-size:clamp(1rem,3.8vw,1.125rem);font-weight:700;
-            text-decoration:none;border-radius:10px;margin:0 auto clamp(36px,7vw,48px);
+            position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+            width:100%;max-width:min(100%,380px);
+            min-height:56px;
+            background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1a1a;
+            padding:16px 26px;font-size:clamp(1.02rem,3.8vw,1.13rem);font-weight:700;
+            text-decoration:none;border-radius:12px;
             cursor:pointer;border:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
-            transition:background-color .2s ease,transform .2s ease;
+            box-shadow:0 8px 24px rgba(212,175,55,.25);
+            transition:box-shadow .2s ease,transform .15s ease,opacity .2s ease;
         }
-        .cta-button:active{transform:scale(.98)}
+        .cta-button svg{width:22px;height:22px;flex-shrink:0}
+        .cta-button:active{transform:scale(.97)}
+        .cta-button:disabled{opacity:.85;cursor:default}
         @media (hover:hover){
-            .cta-button:hover{background-color:#f0c852;transform:translateY(-1px);box-shadow:0 8px 20px rgba(212,175,55,.28)}
+            .cta-button:hover{box-shadow:0 12px 32px rgba(212,175,55,.38);transform:translateY(-2px)}
         }
-        .features{
-            display:flex;justify-content:center;gap:clamp(20px,6vw,40px);flex-wrap:wrap;
+        .cta-note{margin-top:12px;font-size:12.5px;color:var(--text-faint)}
+
+        /* ---------- trust row ---------- */
+        .trust-row{
+            display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,3vw,24px);
+            margin-top:clamp(28px,6vw,36px);padding-top:clamp(20px,4vw,26px);border-top:1px solid var(--line);
         }
-        .feature{text-align:center;min-width:min(100%,100px)}
-        .feature-number{font-size:clamp(1.75rem,6vw,2.25rem);font-weight:900;color:#D4AF37;margin-bottom:4px;line-height:1}
-        .feature-text{font-size:clamp(12px,3.2vw,14px);color:#ccc;line-height:1.35}
-        @media (max-width:380px){
-            .features{flex-direction:column;gap:20px}
+        .trust-item{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+        .trust-icon{width:38px;height:38px;border-radius:50%;background:rgba(212,175,55,.1);display:flex;align-items:center;justify-content:center;color:var(--gold)}
+        .trust-icon svg{width:18px;height:18px}
+        .trust-number{font-size:clamp(1.05rem,4vw,1.2rem);font-weight:800;color:#fff;line-height:1.1}
+        .trust-text{font-size:clamp(11px,2.8vw,12.5px);color:var(--text-faint);line-height:1.3}
+
+        /* ---------- generic section ---------- */
+        section.block{padding:clamp(40px,9vw,64px) 0}
+        .eyebrow{color:var(--gold);font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+        .block h2{font-size:clamp(1.35rem,5.5vw,2rem);font-weight:800;letter-spacing:-.01em;line-height:1.25;margin-bottom:10px}
+        .block-lead{color:var(--text-dim);font-size:clamp(.95rem,3.4vw,1.05rem);line-height:1.55;max-width:48ch}
+
+        /* ---------- benefits ---------- */
+        .benefits-grid{margin-top:clamp(24px,5vw,32px);display:grid;grid-template-columns:1fr;gap:14px}
+        @media (min-width:480px){.benefits-grid{grid-template-columns:1fr 1fr}}
+        .benefit-card{
+            text-align:left;padding:20px;background:rgba(255,255,255,.03);border:1px solid var(--line);
+            border-radius:20px 6px 20px 6px;
         }
+        .benefit-card:nth-child(even){border-radius:6px 20px 6px 20px}
+        .benefit-icon{width:40px;height:40px;border-radius:11px;background:rgba(212,175,55,.12);color:var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+        .benefit-icon svg{width:20px;height:20px}
+        .benefit-card h3{font-size:15.5px;font-weight:700;margin-bottom:6px}
+        .benefit-card p{font-size:13.5px;color:var(--text-dim);line-height:1.5}
+
+        /* ---------- how it works ---------- */
+        .steps{margin-top:clamp(24px,5vw,32px);position:relative}
+        .step{display:flex;gap:16px;text-align:left;position:relative;padding-bottom:26px}
+        .step:last-child{padding-bottom:0}
+        .step::before{
+            content:'';position:absolute;left:19px;top:40px;bottom:0;width:1px;
+            background:linear-gradient(to bottom,var(--line),transparent);
+        }
+        .step:last-child::before{display:none}
+        .step-num{
+            flex-shrink:0;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);
+            display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;background:var(--bg);
+        }
+        .step-body h3{font-size:15.5px;font-weight:700;margin-bottom:4px;padding-top:8px}
+        .step-body p{font-size:13.5px;color:var(--text-dim);line-height:1.5}
+
+        /* ---------- mid cta banner ---------- */
+        .cta-banner{
+            background:linear-gradient(135deg,rgba(212,175,55,.14),rgba(212,175,55,.04));
+            border:1px solid rgba(212,175,55,.25);border-radius:22px 22px 22px 4px;
+            padding:clamp(28px,7vw,36px) clamp(20px,6vw,32px);text-align:center;
+        }
+        .cta-banner h2{font-size:clamp(1.2rem,5vw,1.6rem);margin-bottom:8px}
+        .cta-banner p{color:var(--text-dim);font-size:.95rem;margin-bottom:22px;max-width:40ch;margin-left:auto;margin-right:auto}
+
+        /* ---------- faq ---------- */
+        .faq-list{margin-top:clamp(20px,5vw,28px);display:flex;flex-direction:column;gap:10px}
+        .faq-item{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02);overflow:hidden}
+        .faq-item summary{
+            list-style:none;cursor:pointer;padding:16px 46px 16px 18px;font-weight:600;font-size:14.5px;position:relative;
+            -webkit-tap-highlight-color:transparent;
+        }
+        .faq-item summary::-webkit-details-marker{display:none}
+        .faq-item summary::after{
+            content:'';position:absolute;right:18px;top:50%;width:10px;height:10px;
+            border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);
+            transform:translateY(-65%) rotate(45deg);transition:transform .2s ease;
+        }
+        .faq-item[open] summary::after{transform:translateY(-35%) rotate(-135deg)}
+        .faq-item p{padding:0 18px 16px;color:var(--text-dim);font-size:13.5px;line-height:1.55}
+
+        /* ---------- footer ---------- */
+        footer{padding:clamp(30px,7vw,40px) 0 20px;text-align:center;border-top:1px solid var(--line)}
+        footer p{font-size:12px;color:var(--text-faint);line-height:1.6}
+
+        /* ---------- sticky mobile cta ---------- */
+        .sticky-cta{
+            position:fixed;left:0;right:0;bottom:0;z-index:40;
+            padding:12px max(16px,env(safe-area-inset-left)) max(12px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-right));
+            background:linear-gradient(to top,rgba(20,20,20,.97) 55%,transparent);
+            transform:translateY(100%);transition:transform .3s ease;
+        }
+        .sticky-cta.visible{transform:translateY(0)}
+        .sticky-cta .cta-button{max-width:none;margin:0 auto}
+
+        @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
         @media (prefers-reduced-motion:reduce){
-            .logo,.badge,h1,.subtitle,.cta-button,.features{animation:none!important}
+            html{scroll-behavior:auto}
+            .hero-inner{animation:none}
+            .cta-button,.sticky-cta{transition:none}
         }
     </style>
     <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=820651490741491&amp;ev=PageView&amp;noscript=1"></noscript>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-            <img src="logo.jpg" alt="Home Lisas" width="120" height="120" fetchpriority="high" decoding="async">
-        </div>
-        <div class="badge">🇧🇷 Atacado para todo o Brasil</div>
-        <h1>
-            Compre já direto
-            <span class="highlight">da fábrica, alta margem de lucro na revenda!</span>
-        </h1>
-        <p class="subtitle">
-            Aqui você encontra as melhores peças do mercado, com
-            <strong>alta qualidade e preço justo</strong>, garantindo sucesso na revenda.
-        </p>
-        <button type="button" class="cta-button" id="ctaButton">Falar com CONSULTOR!</button>
-        <div class="features">
-            <div class="feature">
-                <div class="feature-number">10</div>
-                <div class="feature-text">Peças mínimo de início</div>
-            </div>
-            <div class="feature">
-                <div class="feature-number">100%</div>
-                <div class="feature-text">Atacado para lojistas</div>
-            </div>
-            <div class="feature">
-                <div class="feature-number">🇧🇷</div>
-                <div class="feature-text">Entrega para todo Brasil</div>
-            </div>
-        </div>
+    <div class="topbar">
+        <img src="logo.jpg" alt="" width="30" height="30">
+        <span>HOME <em>LISAS</em></span>
     </div>
+
+    <section class="hero">
+        <div class="wrap hero-inner">
+            <div class="logo-wrap">
+                <div class="logo-glow"></div>
+                <div class="logo">
+                    <img src="logo.jpg" alt="Home Lisas" width="100" height="100" fetchpriority="high" decoding="async">
+                </div>
+            </div>
+            <div class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                Atacado para todo o Brasil
+            </div>
+            <h1>
+                Compre já direto
+                <span class="highlight">da fábrica, alta margem de lucro na revenda</span>
+            </h1>
+            <p class="subtitle">
+                Aqui você encontra as melhores peças do mercado, com
+                <strong>alta qualidade e preço justo</strong>, garantindo sucesso na revenda.
+            </p>
+            <button type="button" class="cta-button" id="ctaButton">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.93 2.46a8.3 8.3 0 0 1 2.45 5.79c0 4.52-3.68 8.2-8.2 8.2h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.2-8.2M8.53 6.87c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36 1 2.52c.12.16 1.7 2.7 4.2 3.71 2.07.85 2.5.68 2.94.64.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47Z"/></svg>
+                Falar com CONSULTOR!
+            </button>
+            <p class="cta-note">Resposta rápida no WhatsApp • Sem compromisso</p>
+            <div class="trust-row">
+                <div class="trust-item">
+                    <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1Z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+                    <div class="trust-number">10</div>
+                    <div class="trust-text">Peças mínimo de início</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4.5 12.5 6 6 9-13"/></svg></div>
+                    <div class="trust-number">100%</div>
+                    <div class="trust-text">Atacado para lojistas</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3c2.5 2.7 4 6 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6-4-9s1.5-6.3 4-9Z"/></svg></div>
+                    <div class="trust-number">BR</div>
+                    <div class="trust-text">Entrega para todo Brasil</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block" id="beneficios">
+        <div class="wrap">
+            <div class="eyebrow">Por que a Home Lisas</div>
+            <h2>Feito para quem revende de verdade</h2>
+            <p class="block-lead">Peças pensadas para dar giro rápido na loja, com qualidade que o cliente final sente na mão.</p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+                    <h3>Qualidade de fábrica</h3>
+                    <p>Tecidos selecionados e acabamento consistente em cada lote.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                    <h3>Preço direto da fábrica</h3>
+                    <p>Sem intermediários — a margem que sobra é sua na revenda.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 11h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></div>
+                    <h3>Entrega para todo Brasil</h3>
+                    <p>Você compra de onde estiver, a gente cuida do envio.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.8 7.34L3 20l1.16-5.2A8.5 8.5 0 1 1 21 11.5Z"/></svg></div>
+                    <h3>Suporte direto no WhatsApp</h3>
+                    <p>Um consultor te ajuda a montar o pedido certo pra sua loja.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block" id="como-funciona">
+        <div class="wrap">
+            <div class="eyebrow">Como funciona</div>
+            <h2>Do primeiro contato à revenda</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <h3>Fale com um consultor</h3>
+                        <p>Clique no botão e converse no WhatsApp com um consultor Home Lisas.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <h3>Monte seu pedido</h3>
+                        <p>Escolha as peças, tamanhos e quantidades — mínimo de 10 peças.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <h3>Receba e revenda</h3>
+                        <p>Seu pedido chega pronto pra loja, com margem para lucrar na revenda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block">
+        <div class="wrap">
+            <div class="cta-banner">
+                <h2>Pronto para começar a revender?</h2>
+                <p>Fale agora com um consultor e monte seu primeiro pedido de atacado.</p>
+                <button type="button" class="cta-button" id="ctaButtonMid">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.93 2.46a8.3 8.3 0 0 1 2.45 5.79c0 4.52-3.68 8.2-8.2 8.2h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.2-8.2M8.53 6.87c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36 1 2.52c.12.16 1.7 2.7 4.2 3.71 2.07.85 2.5.68 2.94.64.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47Z"/></svg>
+                    Falar com CONSULTOR!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="block" id="faq">
+        <div class="wrap">
+            <div class="eyebrow">Dúvidas frequentes</div>
+            <h2>Perguntas antes de comprar</h2>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Qual o pedido mínimo?</summary>
+                    <p>O pedido mínimo é de 10 peças, podendo combinar modelos e tamanhos.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Vocês entregam para todo o Brasil?</summary>
+                    <p>Sim, enviamos para todos os estados. O consultor informa prazo e frete no WhatsApp.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Preciso ter CNPJ para comprar no atacado?</summary>
+                    <p>Não é obrigatório. Atendemos tanto lojistas com CNPJ quanto quem está começando a revender.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Como funciona o pagamento?</summary>
+                    <p>As formas de pagamento são combinadas diretamente com o consultor no WhatsApp.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <p>© <span id="year"></span> Home Lisas — Atacado de Roupas Masculinas.<br>Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="sticky-cta" id="stickyCta">
+        <button type="button" class="cta-button" id="ctaButtonSticky">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.93 2.46a8.3 8.3 0 0 1 2.45 5.79c0 4.52-3.68 8.2-8.2 8.2h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.2-8.2M8.53 6.87c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36 1 2.52c.12.16 1.7 2.7 4.2 3.71 2.07.85 2.5.68 2.94.64.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47Z"/></svg>
+            Falar com CONSULTOR!
+        </button>
+    </div>
+
     <script>
     (function(){
         function injectPixel(){
@@ -108,45 +359,73 @@
     })();
     </script>
     <script>
-        const WHATSAPP_MSG='Ol%C3%A1%2C%20vim%20do%20site!%20E%20quero%20comprar%20no%20atacado!';
+        document.getElementById('year').textContent=new Date().getFullYear();
+
+        const WHATSAPP_MSG='Ol%C3%A1%2C%20vim%20do%20site%20e%20queria%20comprar%20em%20atacado';
         const whatsappLinks=[
-            'https://wa.me/5547992020510?text='+WHATSAPP_MSG,
-            'https://wa.me/5547992562582?text='+WHATSAPP_MSG
+            'https://wa.me/5547992562582?text='+WHATSAPP_MSG,
+            'https://wa.me/5547992498733?text='+WHATSAPP_MSG,
+            'https://wa.me/5547991158287?text='+WHATSAPP_MSG
         ];
         let localFallback=0;
-        function openWhatsApp(url){
-            const a=document.createElement('a');
-            a.href=url;
-            a.target='_blank';
-            a.rel='noopener noreferrer';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-        }
         function fallbackUrl(){
             const index=localFallback%whatsappLinks.length;
             localFallback+=1;
             return whatsappLinks[index];
         }
-        document.getElementById('ctaButton').addEventListener('click',async function(){
-            const btn=this;
-            if(btn.disabled)return;
-            btn.disabled=true;
-            const label=btn.textContent;
-            btn.textContent='Abrindo...';
-            let url=null;
+        function paintLoading(win){
             try{
-                const res=await fetch('/api/next',{cache:'no-store'});
-                if(res.ok){
-                    const data=await res.json();
-                    if(data&&data.url)url=data.url;
-                }
+                win.document.write('<!DOCTYPE html><title>Abrindo WhatsApp…</title><body style="margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#141414;color:#fff;font-family:-apple-system,Segoe UI,Roboto,sans-serif"><p style="opacity:.8">Abrindo WhatsApp…</p></body>');
             }catch(e){}
-            if(!url)url=fallbackUrl();
-            openWhatsApp(url);
-            btn.textContent=label;
-            btn.disabled=false;
+        }
+        function handleClick(btn){
+            return function(){
+                if(btn.disabled)return;
+                btn.disabled=true;
+                const label=btn.innerHTML;
+
+                // Open the tab synchronously (within the user gesture) so browsers
+                // never block the popup, then route it once we know which seller
+                // is next in the fair rotation. A short timeout guarantees the
+                // click always feels instant even if the API is slow.
+                const win=window.open('','_blank');
+                if(win)paintLoading(win);
+
+                let settled=false;
+                function finish(url){
+                    if(settled)return;
+                    settled=true;
+                    if(win){win.location.href=url;}
+                    else{window.open(url,'_blank','noopener,noreferrer');}
+                    btn.innerHTML=label;
+                    btn.disabled=false;
+                }
+
+                const timer=setTimeout(function(){finish(fallbackUrl());},700);
+
+                fetch('/api/next',{cache:'no-store'})
+                    .then(function(res){return res.ok?res.json():null;})
+                    .then(function(data){
+                        clearTimeout(timer);
+                        finish(data&&data.url?data.url:fallbackUrl());
+                    })
+                    .catch(function(){
+                        clearTimeout(timer);
+                        finish(fallbackUrl());
+                    });
+            };
+        }
+        ['ctaButton','ctaButtonMid','ctaButtonSticky'].forEach(function(id){
+            const btn=document.getElementById(id);
+            if(btn)btn.addEventListener('click',handleClick(btn));
         });
+
+        const stickyCta=document.getElementById('stickyCta');
+        const heroBtn=document.getElementById('ctaButton');
+        const observer=new IntersectionObserver(function(entries){
+            stickyCta.classList.toggle('visible',!entries[0].isIntersecting);
+        },{threshold:0});
+        observer.observe(heroBtn);
     </script>
 </body>
 </html>
