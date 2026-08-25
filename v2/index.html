@@ -521,26 +521,12 @@
         const MSG='Ol%C3%A1%2C%20vim%20do%20site%20e%20queria%20comprar%20em%20atacado';
         const PHONES=['5547992562582','5547992498733','5547991158287'];
         const LINKS=PHONES.map(function(p){return 'https://wa.me/'+p+'?text='+MSG;});
-        let ready=null;
         let localIdx=0;
-        let prefetching=false;
 
         function localNext(){
             const i=localIdx%LINKS.length;
             localIdx+=1;
             return {url:LINKS[i],phone:PHONES[i],index:i};
-        }
-
-        function prefetch(){
-            if(prefetching)return;
-            prefetching=true;
-            fetch('/api/next',{cache:'no-store'})
-                .then(function(r){return r.ok?r.json():null;})
-                .then(function(data){
-                    if(data&&data.url)ready=data;
-                })
-                .catch(function(){})
-                .finally(function(){prefetching=false;});
         }
 
         function openNow(url){
@@ -556,21 +542,32 @@
         function onCtaClick(e){
             e.preventDefault();
             if(typeof window.__hlTrack==='function')window.__hlTrack('Lead');
-            const pick=ready||localNext();
-            ready=null;
-            openNow(pick.url);
-            prefetch();
+
+            const win=window.open('','_blank');
+            let settled=false;
+            function finish(url){
+                if(settled)return;
+                settled=true;
+                if(win){win.location.href=url;}
+                else{openNow(url);}
+            }
+            const timer=setTimeout(function(){finish(localNext().url);},800);
+
+            fetch('/api/next',{cache:'no-store'})
+                .then(function(r){return r.ok?r.json():null;})
+                .then(function(data){
+                    clearTimeout(timer);
+                    finish(data&&data.url?data.url:localNext().url);
+                })
+                .catch(function(){
+                    clearTimeout(timer);
+                    finish(localNext().url);
+                });
         }
 
         document.querySelectorAll('[data-cta]').forEach(function(btn){
             btn.addEventListener('click',onCtaClick);
         });
-
-        if(document.readyState==='loading'){
-            document.addEventListener('DOMContentLoaded',prefetch);
-        }else{
-            prefetch();
-        }
 
         const sticky=document.getElementById('sticky');
         const heroCta=document.querySelector('.hero [data-cta]');
