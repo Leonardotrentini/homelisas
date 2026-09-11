@@ -149,6 +149,7 @@
             color:var(--ink);
             font-family:inherit;font-size:1.05rem;font-weight:800;
             letter-spacing:.01em;
+            text-decoration:none;
             cursor:pointer;
             box-shadow:
                 0 0 0 1px rgba(255,255,255,.12) inset,
@@ -311,6 +312,16 @@
             html{scroll-behavior:auto}
         }
     </style>
+    <!-- Meta Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','820651490741491');
+    fbq('track','PageView');
+    </script>
     <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=820651490741491&amp;ev=PageView&amp;noscript=1"></noscript>
 </head>
 <body>
@@ -333,10 +344,10 @@
                     Peças com <strong>qualidade de fábrica</strong> e preço justo —
                     para quem quer lucrar de verdade na revenda.
                 </p>
-                <button type="button" class="cta" data-cta>
+                <a href="#" data-vesto-whatsapp class="cta">
                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.93 2.46a8.3 8.3 0 0 1 2.45 5.79c0 4.52-3.68 8.2-8.2 8.2h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.2-8.2M8.53 6.87c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36 1 2.52c.12.16 1.7 2.7 4.2 3.71 2.07.85 2.5.68 2.94.64.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47Z"/></svg>
                     Falar com consultor
-                </button>
+                </a>
                 <p class="cta-hint">Resposta no WhatsApp · <b>sem compromisso</b></p>
                 <div class="proof" aria-label="Destaques">
                     <div class="proof-item"><strong>ALTA</strong><span>Qualidade<br>de fábrica</span></div>
@@ -408,10 +419,10 @@
         <div class="wrap">
             <h2>Pronto pra comprar<br>no atacado?</h2>
             <p>Fale agora com um consultor e monte seu primeiro pedido.</p>
-            <button type="button" class="cta" data-cta>
+            <a href="#" data-vesto-whatsapp class="cta">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.93 2.46a8.3 8.3 0 0 1 2.45 5.79c0 4.52-3.68 8.2-8.2 8.2h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.2-8.2M8.53 6.87c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36 1 2.52c.12.16 1.7 2.7 4.2 3.71 2.07.85 2.5.68 2.94.64.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47Z"/></svg>
                 Falar com consultor
-            </button>
+            </a>
         </div>
     </section>
 
@@ -420,135 +431,25 @@
     </footer>
 
     <div class="sticky" id="sticky">
-        <button type="button" class="cta" data-cta>
+        <a href="#" data-vesto-whatsapp class="cta">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.93 2.46a8.3 8.3 0 0 1 2.45 5.79c0 4.52-3.68 8.2-8.2 8.2h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.2-8.2M8.53 6.87c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36 1 2.52c.12.16 1.7 2.7 4.2 3.71 2.07.85 2.5.68 2.94.64.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47Z"/></svg>
             Falar com consultor
-        </button>
+        </a>
     </div>
 
     <script>
     (function(){
-        var PIXEL_ID='820651490741491';
-        var pageViewId='hl_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
-        var pageViewCapiSent=false;
-        var leadLockUntil=0;
-
-        function getCookie(name){
-            try{
-                var m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)'));
-                return m?decodeURIComponent(m[1]):'';
-            }catch(e){return '';}
-        }
-        function makeEventId(){
-            return 'hl_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
-        }
-        function sendCapi(eventName,eventId){
-            var payload={
-                event_name:eventName,
-                event_id:eventId,
-                event_source_url:location.href,
-                fbp:getCookie('_fbp'),
-                fbc:getCookie('_fbc')
-            };
-            var body=JSON.stringify(payload);
-            try{
-                fetch('/api/capi',{
-                    method:'POST',
-                    headers:{'Content-Type':'application/json'},
-                    body:body,
-                    keepalive:true,
-                    cache:'no-store'
-                }).catch(function(){
-                    try{
-                        if(navigator.sendBeacon){
-                            navigator.sendBeacon('/api/capi',new Blob([body],{type:'application/json'}));
-                        }
-                    }catch(e){}
-                });
-            }catch(e){}
-        }
-        function sendPageViewCapiOnce(){
-            if(pageViewCapiSent)return;
-            pageViewCapiSent=true;
-            sendCapi('PageView',pageViewId);
-        }
-        window.__hlTrack=function(eventName){
-            if(eventName==='Lead'){
-                var now=Date.now();
-                if(now<leadLockUntil)return null;
-                leadLockUntil=now+2500;
-            }
-            var id=makeEventId();
-            try{
-                if(typeof fbq==='function'){
-                    fbq('track',eventName,{},{eventID:id});
-                }
-            }catch(e){}
-            sendCapi(eventName,id);
-            return id;
-        };
-
-        function injectPixel(){
-            if(window.__hlPixelInjected)return;
-            window.__hlPixelInjected=true;
-
-            !function(f,b,e,v,n,t,s){
-                if(f.fbq)return;
-                n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                if(!f._fbq)f._fbq=n;
-                n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-            }(window,document);
-
-            fbq('init',PIXEL_ID);
-            fbq('track','PageView',{},{eventID:pageViewId});
-
-            var t=document.createElement('script');
-            t.async=true;
-            t.src='https://connect.facebook.net/en_US/fbevents.js';
-            t.onload=function(){setTimeout(sendPageViewCapiOnce,50);};
-            t.onerror=function(){sendPageViewCapiOnce();};
-            document.head.appendChild(t);
-            setTimeout(sendPageViewCapiOnce,3000);
-        }
-        if('requestIdleCallback'in window){requestIdleCallback(function(){injectPixel()},{timeout:4000});}
-        else{window.addEventListener('load',function(){setTimeout(injectPixel,1200);});}
-    })();
-    </script>
-    <script>
-    (function(){
         document.getElementById('year').textContent=new Date().getFullYear();
-
-        const MSG='Ol%C3%A1%2C%20vim%20do%20site%20e%20queria%20comprar%20em%20atacado';
-        const WA_URL='https://wa.me/5547991158287?text='+MSG;
-
-        function openNow(url){
-            const a=document.createElement('a');
-            a.href=url;
-            a.target='_blank';
-            a.rel='noopener noreferrer';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-        }
-
-        function onCtaClick(e){
-            e.preventDefault();
-            if(typeof window.__hlTrack==='function')window.__hlTrack('Lead');
-            openNow(WA_URL);
-        }
-
-        document.querySelectorAll('[data-cta]').forEach(function(btn){
-            btn.addEventListener('click',onCtaClick);
-        });
-
         const sticky=document.getElementById('sticky');
-        const heroCta=document.querySelector('.hero [data-cta]');
-        if(heroCta&&'IntersectionObserver'in window){
+        const heroCta=document.querySelector('.hero [data-vesto-whatsapp]');
+        if(heroCta&&sticky&&'IntersectionObserver'in window){
             new IntersectionObserver(function(entries){
                 sticky.classList.toggle('on',!entries[0].isIntersecting);
             },{threshold:0}).observe(heroCta);
         }
     })();
     </script>
+    <script src="https://backend-production-7a466.up.railway.app/vesto-attribution.js?key=vpk_f8edbbb83ace4ce6413516175893b636" defer data-selector="[data-vesto-skip]"></script>
+    <script src="/src/js/vesto-global-rotator.js" defer></script>
 </body>
 </html>

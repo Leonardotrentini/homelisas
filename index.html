@@ -184,6 +184,16 @@
             .cta-button,.sticky-cta{transition:none}
         }
     </style>
+    <!-- Meta Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','820651490741491');
+    fbq('track','PageView');
+    </script>
     <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=820651490741491&amp;ev=PageView&amp;noscript=1"></noscript>
 </head>
 <body>
@@ -212,10 +222,10 @@
                 Aqui você encontra as melhores peças do mercado, com
                 <strong>alta qualidade e preço justo</strong>, garantindo sucesso na revenda.
             </p>
-            <button type="button" class="cta-button" id="ctaButton">
+            <a href="#" data-vesto-whatsapp class="cta-button" id="ctaButton">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.93 2.46a8.3 8.3 0 0 1 2.45 5.79c0 4.52-3.68 8.2-8.2 8.2h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.2-8.2M8.53 6.87c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36 1 2.52c.12.16 1.7 2.7 4.2 3.71 2.07.85 2.5.68 2.94.64.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47Z"/></svg>
                 Falar com CONSULTOR!
-            </button>
+            </a>
             <p class="cta-note">Resposta rápida no WhatsApp • Sem compromisso</p>
             <div class="trust-row">
                 <div class="trust-item">
@@ -302,10 +312,10 @@
             <div class="cta-banner">
                 <h2>Pronto para começar a revender?</h2>
                 <p>Fale agora com um consultor e monte seu primeiro pedido de atacado.</p>
-                <button type="button" class="cta-button" id="ctaButtonMid">
+                <a href="#" data-vesto-whatsapp class="cta-button" id="ctaButtonMid">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.93 2.46a8.3 8.3 0 0 1 2.45 5.79c0 4.52-3.68 8.2-8.2 8.2h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.2-8.2M8.53 6.87c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36 1 2.52c.12.16 1.7 2.7 4.2 3.71 2.07.85 2.5.68 2.94.64.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47Z"/></svg>
                     Falar com CONSULTOR!
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -342,169 +352,23 @@
     </footer>
 
     <div class="sticky-cta" id="stickyCta">
-        <button type="button" class="cta-button" id="ctaButtonSticky">
+        <a href="#" data-vesto-whatsapp class="cta-button" id="ctaButtonSticky">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.93 2.46a8.3 8.3 0 0 1 2.45 5.79c0 4.52-3.68 8.2-8.2 8.2h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.2-8.2M8.53 6.87c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36 1 2.52c.12.16 1.7 2.7 4.2 3.71 2.07.85 2.5.68 2.94.64.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47Z"/></svg>
             Falar com CONSULTOR!
-        </button>
+        </a>
     </div>
 
     <script>
-    (function(){
-        var PIXEL_ID='820651490741491';
-        var pageViewId='hl_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
-        var pageViewCapiSent=false;
-        var leadLockUntil=0;
-
-        function getCookie(name){
-            try{
-                var m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)'));
-                return m?decodeURIComponent(m[1]):'';
-            }catch(e){return '';}
-        }
-        function makeEventId(){
-            return 'hl_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
-        }
-        function sendCapi(eventName,eventId){
-            var payload={
-                event_name:eventName,
-                event_id:eventId,
-                event_source_url:location.href,
-                fbp:getCookie('_fbp'),
-                fbc:getCookie('_fbc')
-            };
-            var body=JSON.stringify(payload);
-            // fetch+keepalive keeps Content-Type/json reliable (needed for event_id dedupe)
-            try{
-                fetch('/api/capi',{
-                    method:'POST',
-                    headers:{'Content-Type':'application/json'},
-                    body:body,
-                    keepalive:true,
-                    cache:'no-store'
-                }).catch(function(){
-                    try{
-                        if(navigator.sendBeacon){
-                            navigator.sendBeacon('/api/capi',new Blob([body],{type:'application/json'}));
-                        }
-                    }catch(e){}
-                });
-            }catch(e){}
-        }
-        function sendPageViewCapiOnce(){
-            if(pageViewCapiSent)return;
-            pageViewCapiSent=true;
-            sendCapi('PageView',pageViewId);
-        }
-        // One browser + one server event, SAME event_id → Meta dedupes to a single PageView/Lead
-        window.__hlTrack=function(eventName){
-            if(eventName==='Lead'){
-                var now=Date.now();
-                if(now<leadLockUntil)return null;
-                leadLockUntil=now+2500;
-            }
-            var id=makeEventId();
-            try{
-                if(typeof fbq==='function'){
-                    fbq('track',eventName,{},{eventID:id});
-                }
-            }catch(e){}
-            sendCapi(eventName,id);
-            return id;
-        };
-
-        function injectPixel(){
-            if(window.__hlPixelInjected)return;
-            window.__hlPixelInjected=true;
-
-            !function(f,b,e,v,n,t,s){
-                if(f.fbq)return;
-                n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                if(!f._fbq)f._fbq=n;
-                n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-            }(window,document);
-
-            fbq('init',PIXEL_ID);
-            fbq('track','PageView',{},{eventID:pageViewId});
-
-            var t=document.createElement('script');
-            t.async=true;
-            t.src='https://connect.facebook.net/en_US/fbevents.js';
-            // Send CAPI after pixel script loads so _fbp exists → better dedupe match
-            t.onload=function(){setTimeout(sendPageViewCapiOnce,50);};
-            t.onerror=function(){sendPageViewCapiOnce();};
-            document.head.appendChild(t);
-            // Adblock / stalled script: still send one server PageView (no second browser event)
-            setTimeout(sendPageViewCapiOnce,3000);
-        }
-        if('requestIdleCallback'in window){requestIdleCallback(function(){injectPixel()},{timeout:4000});}
-        else{window.addEventListener('load',function(){setTimeout(injectPixel,1200);});}
-    })();
-    </script>
-    <script>
         document.getElementById('year').textContent=new Date().getFullYear();
-
-        const WHATSAPP_MSG='Ol%C3%A1%2C%20vim%20do%20site%20e%20queria%20comprar%20em%20atacado';
-        const whatsappLinks=[
-            'https://wa.me/5547992562582?text='+WHATSAPP_MSG,
-            'https://wa.me/5547992498733?text='+WHATSAPP_MSG,
-            'https://wa.me/5547991158287?text='+WHATSAPP_MSG
-        ];
-        let localFallback=0;
-        function fallbackUrl(){
-            const index=localFallback%whatsappLinks.length;
-            localFallback+=1;
-            return whatsappLinks[index];
-        }
-        function paintLoading(win){
-            try{
-                win.document.write('<!DOCTYPE html><title>Abrindo WhatsApp…</title><body style="margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#141414;color:#fff;font-family:-apple-system,Segoe UI,Roboto,sans-serif"><p style="opacity:.8">Abrindo WhatsApp…</p></body>');
-            }catch(e){}
-        }
-        function handleClick(btn){
-            return function(){
-                if(btn.disabled)return;
-                btn.disabled=true;
-                const label=btn.innerHTML;
-                if(typeof window.__hlTrack==='function')window.__hlTrack('Lead');
-
-                const win=window.open('','_blank');
-                if(win)paintLoading(win);
-
-                let settled=false;
-                function finish(url){
-                    if(settled)return;
-                    settled=true;
-                    if(win){win.location.href=url;}
-                    else{window.open(url,'_blank','noopener,noreferrer');}
-                    btn.innerHTML=label;
-                    btn.disabled=false;
-                }
-
-                const timer=setTimeout(function(){finish(fallbackUrl());},700);
-
-                fetch('/api/next',{cache:'no-store'})
-                    .then(function(res){return res.ok?res.json():null;})
-                    .then(function(data){
-                        clearTimeout(timer);
-                        finish(data&&data.url?data.url:fallbackUrl());
-                    })
-                    .catch(function(){
-                        clearTimeout(timer);
-                        finish(fallbackUrl());
-                    });
-            };
-        }
-        ['ctaButton','ctaButtonMid','ctaButtonSticky'].forEach(function(id){
-            const btn=document.getElementById(id);
-            if(btn)btn.addEventListener('click',handleClick(btn));
-        });
-
         const stickyCta=document.getElementById('stickyCta');
         const heroBtn=document.getElementById('ctaButton');
-        const observer=new IntersectionObserver(function(entries){
-            stickyCta.classList.toggle('visible',!entries[0].isIntersecting);
-        },{threshold:0});
-        observer.observe(heroBtn);
+        if(heroBtn&&stickyCta&&'IntersectionObserver'in window){
+            new IntersectionObserver(function(entries){
+                stickyCta.classList.toggle('visible',!entries[0].isIntersecting);
+            },{threshold:0}).observe(heroBtn);
+        }
     </script>
+    <script src="https://backend-production-7a466.up.railway.app/vesto-attribution.js?key=vpk_f8edbbb83ace4ce6413516175893b636" defer data-selector="[data-vesto-skip]"></script>
+    <script src="/src/js/vesto-global-rotator.js" defer></script>
 </body>
 </html>

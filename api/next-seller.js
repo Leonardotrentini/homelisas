@@ -1,6 +1,6 @@
 const { Redis } = require('@upstash/redis');
 
-// Compat: mesma lista/ordem de /api/next-seller (painel Vesto)
+// Mesma lista do painel Vesto → Integrações → Meta
 const SELLERS = [
   { label: 'larissa', phone: '5547991158287' },
   { label: 'ana', phone: '5547992562582' },
@@ -9,14 +9,6 @@ const SELLERS = [
 
 const MESSAGE = 'Olá, vim do site e queria comprar em atacado';
 const REDIS_KEY = 'homelisas:whatsapp:seller-seq';
-
-const LINKS = SELLERS.map(
-  (s) =>
-    'https://wa.me/' +
-    s.phone +
-    '?text=' +
-    encodeURIComponent(MESSAGE)
-);
 
 function getRedis() {
   const url =
@@ -53,38 +45,34 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ ok: false, error: 'Method not allowed' });
   }
 
   const redis = getRedis();
-  let count = null;
-  let source = 'redis';
+  let seq = null;
 
   if (redis) {
-    count = await incrCounter(redis);
+    seq = await incrCounter(redis);
   }
 
-  if (count === null) {
-    source = 'unavailable';
+  if (seq === null) {
     return res.status(503).json({
+      ok: false,
       error: 'Counter unavailable',
       hint: 'Connect Upstash Redis on Vercel (KV_REST_API_URL / KV_REST_API_TOKEN)',
     });
   }
 
-  const index = (((count - 1) % SELLERS.length) + SELLERS.length) % SELLERS.length;
+  const index = (((seq - 1) % SELLERS.length) + SELLERS.length) % SELLERS.length;
   const seller = SELLERS[index];
 
   return res.status(200).json({
     ok: true,
-    index,
     phone: seller.phone,
     label: seller.label,
-    url: LINKS[index],
-    message: MESSAGE,
-    count,
-    seq: count,
-    source,
+    index,
     total: SELLERS.length,
+    seq,
+    message: MESSAGE,
   });
 };

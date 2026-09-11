@@ -79,7 +79,8 @@ module.exports = async function handler(req, res) {
   }
 
   const eventName = String(body.event_name || '').trim();
-  const allowed = new Set(['PageView', 'Lead', 'Contact', 'ViewContent']);
+  // Contact/Purchase/Qualify: only via Vesto CAPI — LP must not fire them here
+  const allowed = new Set(['PageView', 'ViewContent']);
   if (!allowed.has(eventName)) {
     return res.status(400).json({ error: 'Invalid event_name' });
   }
@@ -122,13 +123,6 @@ module.exports = async function handler(req, res) {
     ? String(body.event_source_url).slice(0, 2048)
     : '';
   if (sourceUrl) event.event_source_url = sourceUrl;
-
-  if (eventName === 'Lead' || eventName === 'Contact') {
-    event.custom_data = {
-      content_name: 'whatsapp_consultor',
-      content_category: 'atacado',
-    };
-  }
 
   const payload = {
     data: [event],
