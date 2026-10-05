@@ -9,6 +9,7 @@
     { label: 'larissa', phone: '5547991158287' },
     { label: 'ana', phone: '5547992562582' },
     { label: 'alice', phone: '5547992498733' },
+    { label: '992020510', phone: '5547992020510' },
   ];
   var busy = false;
   var localFallback = 0;
